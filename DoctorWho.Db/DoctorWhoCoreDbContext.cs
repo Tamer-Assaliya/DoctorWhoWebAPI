@@ -16,6 +16,7 @@ namespace DoctorWho.Db
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlServer(connectionString);
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EpisodeCompanion>().HasKey(e => new { e.EpisodeId, e.CompanionId });
@@ -36,11 +37,11 @@ namespace DoctorWho.Db
                 new Companion { CompanionId = 4, CompanionName = "Naheel", WhoPlayed = "Sali" }
             );
             modelBuilder.Entity<Doctor>().HasData(
-                new Doctor { DoctorId = 1, DoctorNumber = 0834676823, DoctorName = "John", BirthDate = new DateTime(19980601), FirstEpisodeDate = new DateTime(19980602), LastEpisodeDate = new DateTime(20120601) },
-                new Doctor { DoctorId = 2, DoctorNumber = 0511385412, DoctorName = "Majd", BirthDate = new DateTime(18981201), FirstEpisodeDate = new DateTime(19981211), LastEpisodeDate = new DateTime(19990511) },
-                new Doctor { DoctorId = 3, DoctorNumber = 0589135733, DoctorName = "Alaa", BirthDate = new DateTime(20000506), FirstEpisodeDate = new DateTime(20070706), LastEpisodeDate = new DateTime(20150113) },
-                new Doctor { DoctorId = 4, DoctorNumber = 0399178240, DoctorName = "Nihad", BirthDate = new DateTime(19900714), FirstEpisodeDate = new DateTime(19950216), LastEpisodeDate = new DateTime(19970809) },
-                new Doctor { DoctorId = 5, DoctorNumber = 0388528561, DoctorName = "Ali", BirthDate = new DateTime(19830417), FirstEpisodeDate = new DateTime(19880815), LastEpisodeDate = new DateTime(19980205) }
+                new Doctor { DoctorId = 1, DoctorNumber = 0834676823, DoctorName = "John", BirthDate = new DateTime(1998, 06, 01), FirstEpisodeDate = new DateTime(1998, 06, 02), LastEpisodeDate = new DateTime(2012, 06, 01) },
+                new Doctor { DoctorId = 2, DoctorNumber = 0511385412, DoctorName = "Majd", BirthDate = new DateTime(1898, 12, 01), FirstEpisodeDate = new DateTime(1998, 12, 11), LastEpisodeDate = new DateTime(1999, 05, 11) },
+                new Doctor { DoctorId = 3, DoctorNumber = 0589135733, DoctorName = "Alaa", BirthDate = new DateTime(2000, 05, 06), FirstEpisodeDate = new DateTime(2007, 07, 06), LastEpisodeDate = new DateTime(2015, 01, 13) },
+                new Doctor { DoctorId = 4, DoctorNumber = 0399178240, DoctorName = "Nihad", BirthDate = new DateTime(1990, 07, 14), FirstEpisodeDate = new DateTime(1995, 02, 16), LastEpisodeDate = new DateTime(1997, 08, 09) },
+                new Doctor { DoctorId = 5, DoctorNumber = 0388528561, DoctorName = "Ali", BirthDate = new DateTime(1983, 04, 17), FirstEpisodeDate = new DateTime(1988, 08, 15), LastEpisodeDate = new DateTime(1998, 02, 05) }
             );
             modelBuilder.Entity<Enemy>().HasData(
                 new Enemy { EnemyId = 1, EnemyName = "Suha", Description = "an evil one" },
@@ -50,11 +51,11 @@ namespace DoctorWho.Db
                 new Enemy { EnemyId = 5, EnemyName = "Yazan", Description = "As the fire" }
             );
             modelBuilder.Entity<Episode>().HasData(
-                new Episode { EpisodeId = 1, SeriesNumber = 432, EpisodeNumber = 565, EpisodeType = "Action", Title = "Fast & Furios", EpisodeDate = new DateTime(20210414), Notes = "best car drifting", AuthorId = 2, DoctorId = 2 },
-                new Episode { EpisodeId = 2, SeriesNumber = 433, EpisodeNumber = 112, EpisodeType = "Fancy", Title = "The Game", EpisodeDate = new DateTime(20150502), Notes = "back to worldwide war 2", AuthorId = 4, DoctorId = 3 },
-                new Episode { EpisodeId = 3, SeriesNumber = 766, EpisodeNumber = 629, EpisodeType = "Funny", Title = "GOT", EpisodeDate = new DateTime(20131204), Notes = "loved by people", AuthorId = 5, DoctorId = 1 },
-                new Episode { EpisodeId = 4, SeriesNumber = 551, EpisodeNumber = 257, EpisodeType = "Thriller", Title = "Prison Break", EpisodeDate = new DateTime(20001123), Notes = "An exciting one", AuthorId = 1, DoctorId = 2 },
-                new Episode { EpisodeId = 5, SeriesNumber = 984, EpisodeNumber = 391, EpisodeType = "Mystrey", Title = "You", EpisodeDate = new DateTime(20180512), Notes = "psychopath lover", AuthorId = 1, DoctorId = 3 }
+                new Episode { EpisodeId = 1, SeriesNumber = 432, EpisodeNumber = 565, EpisodeType = "Action", Title = "Fast & Furios", EpisodeDate = new DateTime(2021, 04, 14), Notes = "best car drifting", AuthorId = 2, DoctorId = 2 },
+                new Episode { EpisodeId = 2, SeriesNumber = 433, EpisodeNumber = 112, EpisodeType = "Fancy", Title = "The Game", EpisodeDate = new DateTime(2015, 05, 02), Notes = "back to worldwide war 2", AuthorId = 4, DoctorId = 3 },
+                new Episode { EpisodeId = 3, SeriesNumber = 766, EpisodeNumber = 629, EpisodeType = "Funny", Title = "GOT", EpisodeDate = new DateTime(2013, 12, 04), Notes = "loved by people", AuthorId = 5, DoctorId = 1 },
+                new Episode { EpisodeId = 4, SeriesNumber = 551, EpisodeNumber = 257, EpisodeType = "Thriller", Title = "Prison Break", EpisodeDate = new DateTime(2000, 11, 23), Notes = "An exciting one", AuthorId = 1, DoctorId = 2 },
+                new Episode { EpisodeId = 5, SeriesNumber = 984, EpisodeNumber = 391, EpisodeType = "Mystrey", Title = "You", EpisodeDate = new DateTime(2018, 05, 12), Notes = "psychopath lover", AuthorId = 1, DoctorId = 3 }
             );
             modelBuilder.Entity<EpisodeEnemy>().HasData(
                 new EpisodeEnemy { EpisodeId = 3, EnemyId = 4 },
