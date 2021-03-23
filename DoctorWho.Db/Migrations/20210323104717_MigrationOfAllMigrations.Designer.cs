@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorWho.Db.Migrations
 {
     [DbContext(typeof(DoctorWhoCoreDbContext))]
-    [Migration("20210317152426_AddView")]
-    partial class AddView
+    [Migration("20210323104717_MigrationOfAllMigrations")]
+    partial class MigrationOfAllMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,9 +116,7 @@ namespace DoctorWho.Db.Migrations
             modelBuilder.Entity("DoctorWho.Db.Doctor", b =>
                 {
                     b.Property<int>("DoctorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -143,47 +141,47 @@ namespace DoctorWho.Db.Migrations
                         new
                         {
                             DoctorId = 1,
-                            BirthDate = new DateTime(1, 1, 1, 0, 0, 1, 998, DateTimeKind.Unspecified).AddTicks(601),
+                            BirthDate = new DateTime(1998, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorName = "John",
                             DoctorNumber = 834676823,
-                            FirstEpisodeDate = new DateTime(1, 1, 1, 0, 0, 1, 998, DateTimeKind.Unspecified).AddTicks(602),
-                            LastEpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 12, DateTimeKind.Unspecified).AddTicks(601)
+                            FirstEpisodeDate = new DateTime(1998, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastEpisodeDate = new DateTime(2012, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             DoctorId = 2,
-                            BirthDate = new DateTime(1, 1, 1, 0, 0, 1, 898, DateTimeKind.Unspecified).AddTicks(1201),
+                            BirthDate = new DateTime(1898, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorName = "Majd",
                             DoctorNumber = 511385412,
-                            FirstEpisodeDate = new DateTime(1, 1, 1, 0, 0, 1, 998, DateTimeKind.Unspecified).AddTicks(1211),
-                            LastEpisodeDate = new DateTime(1, 1, 1, 0, 0, 1, 999, DateTimeKind.Unspecified).AddTicks(511)
+                            FirstEpisodeDate = new DateTime(1998, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastEpisodeDate = new DateTime(1999, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             DoctorId = 3,
-                            BirthDate = new DateTime(1, 1, 1, 0, 0, 2, 0, DateTimeKind.Unspecified).AddTicks(506),
+                            BirthDate = new DateTime(2000, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorName = "Alaa",
                             DoctorNumber = 589135733,
-                            FirstEpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 7, DateTimeKind.Unspecified).AddTicks(706),
-                            LastEpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 15, DateTimeKind.Unspecified).AddTicks(113)
+                            FirstEpisodeDate = new DateTime(2007, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastEpisodeDate = new DateTime(2015, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             DoctorId = 4,
-                            BirthDate = new DateTime(1, 1, 1, 0, 0, 1, 990, DateTimeKind.Unspecified).AddTicks(714),
+                            BirthDate = new DateTime(1990, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorName = "Nihad",
                             DoctorNumber = 399178240,
-                            FirstEpisodeDate = new DateTime(1, 1, 1, 0, 0, 1, 995, DateTimeKind.Unspecified).AddTicks(216),
-                            LastEpisodeDate = new DateTime(1, 1, 1, 0, 0, 1, 997, DateTimeKind.Unspecified).AddTicks(809)
+                            FirstEpisodeDate = new DateTime(1995, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastEpisodeDate = new DateTime(1997, 8, 9, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             DoctorId = 5,
-                            BirthDate = new DateTime(1, 1, 1, 0, 0, 1, 983, DateTimeKind.Unspecified).AddTicks(417),
+                            BirthDate = new DateTime(1983, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DoctorName = "Ali",
                             DoctorNumber = 388528561,
-                            FirstEpisodeDate = new DateTime(1, 1, 1, 0, 0, 1, 988, DateTimeKind.Unspecified).AddTicks(815),
-                            LastEpisodeDate = new DateTime(1, 1, 1, 0, 0, 1, 998, DateTimeKind.Unspecified).AddTicks(205)
+                            FirstEpisodeDate = new DateTime(1988, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastEpisodeDate = new DateTime(1998, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -282,7 +280,7 @@ namespace DoctorWho.Db.Migrations
                             EpisodeId = 1,
                             AuthorId = 2,
                             DoctorId = 2,
-                            EpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 21, DateTimeKind.Unspecified).AddTicks(414),
+                            EpisodeDate = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EpisodeNumber = 565,
                             EpisodeType = "Action",
                             Notes = "best car drifting",
@@ -294,7 +292,7 @@ namespace DoctorWho.Db.Migrations
                             EpisodeId = 2,
                             AuthorId = 4,
                             DoctorId = 3,
-                            EpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 15, DateTimeKind.Unspecified).AddTicks(502),
+                            EpisodeDate = new DateTime(2015, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EpisodeNumber = 112,
                             EpisodeType = "Fancy",
                             Notes = "back to worldwide war 2",
@@ -306,7 +304,7 @@ namespace DoctorWho.Db.Migrations
                             EpisodeId = 3,
                             AuthorId = 5,
                             DoctorId = 1,
-                            EpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 13, DateTimeKind.Unspecified).AddTicks(1204),
+                            EpisodeDate = new DateTime(2013, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EpisodeNumber = 629,
                             EpisodeType = "Funny",
                             Notes = "loved by people",
@@ -318,7 +316,7 @@ namespace DoctorWho.Db.Migrations
                             EpisodeId = 4,
                             AuthorId = 1,
                             DoctorId = 2,
-                            EpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 0, DateTimeKind.Unspecified).AddTicks(1123),
+                            EpisodeDate = new DateTime(2000, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EpisodeNumber = 257,
                             EpisodeType = "Thriller",
                             Notes = "An exciting one",
@@ -330,7 +328,7 @@ namespace DoctorWho.Db.Migrations
                             EpisodeId = 5,
                             AuthorId = 1,
                             DoctorId = 3,
-                            EpisodeDate = new DateTime(1, 1, 1, 0, 0, 2, 18, DateTimeKind.Unspecified).AddTicks(512),
+                            EpisodeDate = new DateTime(2018, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EpisodeNumber = 391,
                             EpisodeType = "Mystrey",
                             Notes = "psychopath lover",
@@ -421,6 +419,23 @@ namespace DoctorWho.Db.Migrations
                             EpisodeId = 4,
                             EnemyId = 3
                         });
+                });
+
+            modelBuilder.Entity("DoctorWho.Db.ViewEpisodes", b =>
+                {
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DoctorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EnemyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToView("viewEpisodes");
                 });
 
             modelBuilder.Entity("DoctorWho.Db.Episode", b =>

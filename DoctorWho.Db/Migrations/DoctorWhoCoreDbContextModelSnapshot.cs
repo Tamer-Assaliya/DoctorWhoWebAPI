@@ -114,9 +114,7 @@ namespace DoctorWho.Db.Migrations
             modelBuilder.Entity("DoctorWho.Db.Doctor", b =>
                 {
                     b.Property<int>("DoctorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
