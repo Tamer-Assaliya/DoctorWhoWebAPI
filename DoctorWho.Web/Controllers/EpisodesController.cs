@@ -15,11 +15,21 @@ namespace DoctorWho.Web.Controllers
     public class EpisodesController : ControllerBase
     {
         private readonly EpisodeRepository _episodeRepository;
+        private readonly EpisodeEnemyRepository _episodeEnemyRepository;
+        private readonly EpisodeCompanionRepository _episodeCompanionRepository;
         private readonly IMapper _mapper;
-        public EpisodesController(EpisodeRepository episodeRepository, IMapper mapper)
+        public EpisodesController(EpisodeRepository episodeRepository,
+        EpisodeEnemyRepository episodeEnemyRepository,
+        EpisodeCompanionRepository episodeCompanionRepository,
+        IMapper mapper)
         {
             _episodeRepository = episodeRepository ??
               throw new ArgumentNullException(nameof(EpisodeRepository));
+            _episodeEnemyRepository = episodeEnemyRepository ??
+              throw new ArgumentNullException(nameof(EpisodeEnemyRepository));
+            _episodeCompanionRepository = episodeCompanionRepository ??
+              throw new ArgumentNullException(nameof(EpisodeCompanionRepository));
+
             _mapper = mapper ??
               throw new ArgumentNullException(nameof(mapper));
         }
@@ -42,7 +52,7 @@ namespace DoctorWho.Web.Controllers
         }
 
         [HttpPost()]
-        public ActionResult<EpisodeDto> CreateEpisode(int episodeId, EpisodeForCreationDto episode)
+        public ActionResult<EpisodeDto> CreateEpisode(EpisodeForCreationDto episode)
         {
             var episodeEntity = _mapper.Map<Episode>(episode);
             _episodeRepository.CreatEpisode(episodeEntity);
@@ -50,6 +60,34 @@ namespace DoctorWho.Web.Controllers
             return CreatedAtRoute("GetEpisode",
             new { episodeId = episodeDto.EpisodeId },
             episodeDto);
+        }
+
+        [HttpPost("{episodeId}/enemies")]
+        public ActionResult<EpisodeEnemyDto> AddEnemyToEpisode(int episodeId, EpisodeEnemyForCreationDto episodeEnemy)
+        {
+            if (_episodeRepository.GetEpisode(episodeId) == null)
+                return NotFound();
+            if (_episodeEnemyRepository.EpisodeEnemyExist(episodeEnemy.EnemyId, episodeId))
+                return Conflict();
+            var episodeEnemyEntity = _mapper.Map<EpisodeEnemy>(episodeEnemy);
+            episodeEnemyEntity.EpisodeId = episodeId;
+            _episodeEnemyRepository.AddEnemyToEpisode(episodeEnemyEntity.EnemyId, episodeEnemyEntity.EpisodeId);
+            var episodeEnemyDto = _mapper.Map<EpisodeEnemyDto>(episodeEnemyEntity);
+            return Ok(episodeEnemyDto);
+        }
+
+        [HttpPost("{episodeId}/companions")]
+        public ActionResult<EpisodeCompanionDto> AddCompanionToEpisode(int episodeId, EpisodeCompanionForCreationDto episodeCompanion)
+        {
+            if (_episodeRepository.GetEpisode(episodeId) == null)
+                return NotFound();
+            if (_episodeCompanionRepository.EpisodeCompanionExist(episodeCompanion.CompanionId, episodeId))
+                return Conflict();
+            var episodeCompanionEntity = _mapper.Map<EpisodeCompanion>(episodeCompanion);
+            episodeCompanionEntity.EpisodeId = episodeId;
+            _episodeCompanionRepository.AddCompanionToEpisode(episodeCompanionEntity.CompanionId, episodeCompanionEntity.EpisodeId);
+            var episodeCompanionDto = _mapper.Map<EpisodeCompanionDto>(episodeCompanionEntity);
+            return Ok(episodeCompanionDto);
         }
     }
 }

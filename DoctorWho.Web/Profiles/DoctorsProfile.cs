@@ -17,7 +17,6 @@ namespace DoctorWho.Web.Profiles
                 .ForMember(
                     dest => dest.Age,
                     opt => opt.MapFrom(src => src.BirthDate.GetCurrentAge()));
-            //datetimeoffset???
             ;
             CreateMap<Models.DoctorForUpadteDto, Doctor>();
         }

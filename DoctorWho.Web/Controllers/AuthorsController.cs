@@ -26,14 +26,14 @@ namespace DoctorWho.Web.Controllers
 
         [HttpGet(Name = "GetAuthors")]
         [HttpHead]
-        public ActionResult<IEnumerable<AuthorDto>> GetAllEpisodes()
+        public ActionResult<IEnumerable<AuthorDto>> GetAllAuthors()
         {
             var authorsFromRepo = _authorRepository.GetAllAuthors();
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
 
         [HttpPut("{AuthorId}")]
-        public IActionResult CreateEpisode(int authorId, AuthorForUpdateDto author)
+        public IActionResult CreateAuthor(int authorId, AuthorForUpdateDto author)
         {
             var authorEntity = _authorRepository.getAuthor(authorId);
             if (authorEntity == null)
