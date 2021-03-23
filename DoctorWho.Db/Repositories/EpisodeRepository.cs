@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace DoctorWho.Db
 {
@@ -6,19 +8,8 @@ namespace DoctorWho.Db
     {
         private static DoctorWhoCoreDbContext _context = new DoctorWhoCoreDbContext();
 
-        public void CreatEpisode(int seriesNumber, int episodeNumber, string episodeType, string title, DateTime episodeDate, int? authorId, int? doctorId, string notes)
+        public void CreatEpisode(Episode episode)
         {
-            var episode = new Episode()
-            {
-                AuthorId = authorId,
-                DoctorId = doctorId,
-                EpisodeDate = episodeDate,
-                EpisodeNumber = episodeNumber,
-                EpisodeType = episodeType,
-                Notes = notes,
-                SeriesNumber = seriesNumber,
-                Title = title
-            };
             _context.Add<Episode>(episode);
             _context.SaveChanges();
         }
@@ -42,6 +33,18 @@ namespace DoctorWho.Db
             var episode = _context.Find<Episode>(id);
             _context.Remove<Episode>(episode);
             _context.SaveChanges();
+        }
+
+        public List<Episode> GetAllEpisodes()
+        {
+            var episodes = _context.Episodes.Select(e => e).ToList();
+            return episodes;
+        }
+
+        public Episode GetEpisode(int id)
+        {
+            var episode = _context.Find<Episode>(id);
+            return episode;
         }
     }
 }

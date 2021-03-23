@@ -31,6 +31,9 @@ namespace DoctorWho.Web
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<DoctorRepository>();
+            services.AddScoped<EpisodeRepository>();
+            services.AddScoped<EpisodeCompanionRepository>();
+            services.AddScoped<EpisodeEnemyRepository>();
             services.AddDbContext<DoctorWhoCoreDbContext>();
         }
 
