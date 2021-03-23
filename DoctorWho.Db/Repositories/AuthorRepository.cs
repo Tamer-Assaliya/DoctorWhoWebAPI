@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace DoctorWho.Db
 {
@@ -13,10 +15,10 @@ namespace DoctorWho.Db
             _context.SaveChanges();
         }
 
-        public void UpdateAuthor(int id, string name)
+        public void UpdateAuthor()
         {
-            var author = _context.Find<Author>(id);
-            author.AuthorName = name;
+            // var author = _context.Find<Author>(id);
+            // author.AuthorName = name;
             _context.SaveChanges();
         }
 
@@ -25,6 +27,18 @@ namespace DoctorWho.Db
             var author = _context.Find<Author>(id);
             _context.Remove<Author>(author);
             _context.SaveChanges();
+        }
+
+        public Author getAuthor(int id)
+        {
+            var author = _context.Find<Author>(id);
+            return author;
+        }
+
+        public List<Author> GetAllAuthors()
+        {
+            var authors = _context.Authors.Select(a => a).ToList();
+            return authors;
         }
     }
 }

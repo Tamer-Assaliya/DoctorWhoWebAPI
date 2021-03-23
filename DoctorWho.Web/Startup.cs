@@ -34,6 +34,7 @@ namespace DoctorWho.Web
             services.AddScoped<EpisodeRepository>();
             services.AddScoped<EpisodeCompanionRepository>();
             services.AddScoped<EpisodeEnemyRepository>();
+            services.AddScoped<AuthorRepository>();
             services.AddDbContext<DoctorWhoCoreDbContext>();
         }
 
