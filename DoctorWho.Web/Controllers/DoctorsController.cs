@@ -24,12 +24,50 @@ namespace DoctorWho.Web.Controllers
               throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet(Name = "GetDoctor")]
+        [HttpGet(Name = "GetDoctors")]
         [HttpHead]
-        public ActionResult<IEnumerable<DoctorDto>> GetAllDoctors(Guid authorId)
+        public ActionResult<IEnumerable<DoctorDto>> GetAllDoctors()
         {
             var doctorsFromRepo = _doctorRepository.GetAllDoctors();
             return Ok(_mapper.Map<IEnumerable<DoctorDto>>(doctorsFromRepo));
+        }
+
+        [HttpGet("{doctorId}", Name = "GetDoctor")]
+        public ActionResult<DoctorDto> GetDoctor(int doctorId)
+        {
+            var doctorFromRepo = _doctorRepository.GetDoctor(doctorId);
+            if (doctorFromRepo == null)
+                return NotFound();
+            return Ok(_mapper.Map<DoctorDto>(doctorFromRepo));
+        }
+
+        [HttpPut("{doctorId}")]
+        public IActionResult UpdateDoctor(int doctorId, DoctorForUpadteDto doctor)
+        {
+            var courseForDoctorFromRepo = _doctorRepository.GetDoctor(doctorId);
+            if (_doctorRepository.GetDoctor(doctorId) == null)
+            {
+                var doctorToAdd = _mapper.Map<Doctor>(doctor);
+                doctorToAdd.DoctorId = doctorId;
+                _doctorRepository.CreatDoctor(doctorId, doctorToAdd);
+                var doctorToReturn = _mapper.Map<DoctorDto>(doctorToAdd);
+                return CreatedAtRoute("GetDoctor",
+                new { doctorId = doctorToReturn.DoctorId },
+                doctorToReturn);
+            }
+            _mapper.Map(doctor, courseForDoctorFromRepo);
+            _doctorRepository.UpdateDoctor(doctorId, courseForDoctorFromRepo);
+            return NoContent();
+        }
+
+        [HttpDelete("{doctorId}")]
+        public IActionResult DeleteDoctor(int doctorId)
+        {
+            var doctorFromRepo = _doctorRepository.GetDoctor(doctorId);
+            if (doctorFromRepo == null)
+                return NotFound();
+            _doctorRepository.DeleteDoctor(doctorFromRepo);
+            return NoContent();
         }
     }
 }

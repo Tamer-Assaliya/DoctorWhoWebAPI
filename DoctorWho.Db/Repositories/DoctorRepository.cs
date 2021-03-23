@@ -9,28 +9,29 @@ namespace DoctorWho.Db
     {
         private static DoctorWhoCoreDbContext _context = new DoctorWhoCoreDbContext();
 
-        public void CreatDoctor(string name, int number, DateTime birthDate, DateTime firstEpisodeDate, DateTime lastEpisodeDate)
+        public Doctor GetDoctor(int id)
         {
-            var doctor = new Doctor() { DoctorName = name, DoctorNumber = number, BirthDate = birthDate, FirstEpisodeDate = firstEpisodeDate, LastEpisodeDate = lastEpisodeDate };
+            var doctor = _context.Find<Doctor>(id);
+            return doctor;
+        }
+        public void CreatDoctor(int id, Doctor doctorToCreate)
+        {
+            doctorToCreate.DoctorId = id;
+            var doctor = doctorToCreate;
             _context.Doctors.Add(doctor);
             _context.SaveChanges();
         }
 
-        public void UpdateDoctor(int id, string name, int number, DateTime birthDate, DateTime firstEpisodeDate, DateTime lastEpisodeDate)
+        public void UpdateDoctor(int id, Doctor doctorToUpdate)
         {
             var doctor = _context.Find<Doctor>(id);
-            doctor.DoctorName = name;
-            doctor.DoctorNumber = number;
-            doctor.BirthDate = birthDate;
-            doctor.FirstEpisodeDate = firstEpisodeDate;
-            doctor.LastEpisodeDate = lastEpisodeDate;
+            doctor = doctorToUpdate;
             _context.SaveChanges();
         }
 
-        public void DeleteDoctor(int id)
+        public void DeleteDoctor(Doctor doctor)
         {
-            var doctor = _context.Find<Doctor>(id);
-            _context.Remove<Doctor>(doctor);
+            _context.Doctors.Remove(doctor);
             _context.SaveChanges();
         }
 

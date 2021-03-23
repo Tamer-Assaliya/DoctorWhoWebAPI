@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DoctorWho.Db;
 
-namespace DoctorWho.Db
+namespace DoctorWho.Web.Models
 {
-    public class Doctor
+    public class DoctorForUpadteDto
     {
-        public Doctor()
-        {
-            Episodes = new List<Episode>();
-        }
-        public int DoctorId { get; set; }
         public int DoctorNumber { get; set; }
         public string DoctorName { get; set; }
         public DateTime BirthDate { get; set; }

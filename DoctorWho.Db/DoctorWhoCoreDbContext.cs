@@ -22,6 +22,7 @@ namespace DoctorWho.Db
             modelBuilder.Entity<EpisodeCompanion>().HasKey(e => new { e.EpisodeId, e.CompanionId });
             modelBuilder.Entity<EpisodeEnemy>().HasKey(e => new { e.EpisodeId, e.EnemyId });
             modelBuilder.Entity<ViewEpisodes>().HasNoKey().ToView("viewEpisodes");
+            modelBuilder.Entity<Doctor>().Property(d => d.DoctorId).ValueGeneratedNever();
             modelBuilder.Entity<Author>().HasData(
                 new Author { AuthorId = 1, AuthorName = "tamer" },
                 new Author { AuthorId = 2, AuthorName = "Fadi" },
