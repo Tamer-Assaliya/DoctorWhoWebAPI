@@ -13,6 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using DoctorWho.Db;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using DoctorWho.Web.Validators;
 
 namespace DoctorWho.Web
 {
@@ -28,7 +31,7 @@ namespace DoctorWho.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<DoctorRepository>();
             services.AddScoped<EpisodeRepository>();
@@ -38,6 +41,8 @@ namespace DoctorWho.Web
             services.AddScoped<EnemyRepository>();
             services.AddScoped<CompanionRepository>();
             services.AddDbContext<DoctorWhoCoreDbContext>();
+            services.AddTransient<IValidator<Models.DoctorForUpadteDto>, DoctorForUpdateDtoValidator>();
+            services.AddTransient<IValidator<Models.EpisodeForCreationDto>, EpisodeForCreationDtoValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
