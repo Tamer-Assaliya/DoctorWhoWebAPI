@@ -33,7 +33,7 @@ namespace DoctorWho.Web.Controllers
         }
 
         [HttpPut("{AuthorId}")]
-        public IActionResult CreateAuthor(int authorId, AuthorForUpdateDto author)
+        public IActionResult UpdateAuthor(int authorId, AuthorForUpdateDto author)
         {
             var authorEntity = _authorRepository.getAuthor(authorId);
             if (authorEntity == null)
