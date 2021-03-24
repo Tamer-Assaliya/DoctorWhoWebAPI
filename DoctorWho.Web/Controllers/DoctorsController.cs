@@ -42,7 +42,7 @@ namespace DoctorWho.Web.Controllers
         }
 
         [HttpPut("{doctorId}")]
-        public IActionResult UpdateDoctor(int doctorId, DoctorForUpadteDto doctor)
+        public IActionResult UpsertDoctor(int doctorId, DoctorForUpadteDto doctor)
         {
             var courseForDoctorFromRepo = _doctorRepository.GetDoctor(doctorId);
             if (_doctorRepository.GetDoctor(doctorId) == null)
