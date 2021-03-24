@@ -5,8 +5,6 @@ namespace DoctorWho.Db
 {
     public class DoctorWhoCoreDbContext : DbContext
     {
-        private readonly string connectionString =
-        "Server=tcp:myserver-tamer.database.windows.net,1433;Initial Catalog=DoctorWhoCore;Persist Security Info=False;User ID=tamer;Password=kegsy5-mydmuj-Conxam;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public DbSet<Author> Authors { get; set; }
         public DbSet<Companion> Companions { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
@@ -14,8 +12,10 @@ namespace DoctorWho.Db
         public DbSet<Episode> Episodes { get; set; }
         public DbSet<ViewEpisodes> ViewEpisodes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlServer(connectionString);
+        public DoctorWhoCoreDbContext(DbContextOptions<DoctorWhoCoreDbContext> options)
+                   : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -72,6 +72,7 @@ namespace DoctorWho.Db
                 new EpisodeCompanion { EpisodeId = 1, CompanionId = 3 },
                 new EpisodeCompanion { EpisodeId = 4, CompanionId = 3 }
             );
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

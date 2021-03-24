@@ -40,7 +40,13 @@ namespace DoctorWho.Web
             services.AddScoped<AuthorRepository>();
             services.AddScoped<EnemyRepository>();
             services.AddScoped<CompanionRepository>();
-            services.AddDbContext<DoctorWhoCoreDbContext>();
+            services.AddDbContext<DoctorWhoCoreDbContext>(
+                options =>
+            {
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DoctorWhoWeb"));
+            }
+            );
             services.AddTransient<IValidator<Models.DoctorForUpadteDto>, DoctorForUpdateDtoValidator>();
             services.AddTransient<IValidator<Models.EpisodeForCreationDto>, EpisodeForCreationDtoValidator>();
         }

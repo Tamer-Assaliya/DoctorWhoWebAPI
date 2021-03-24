@@ -7,7 +7,12 @@ namespace DoctorWho.Db
 {
     public class DoctorRepository
     {
-        private static DoctorWhoCoreDbContext _context = new DoctorWhoCoreDbContext();
+        private static DoctorWhoCoreDbContext _context;
+
+        public DoctorRepository(DoctorWhoCoreDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
         public Doctor GetDoctor(int id)
         {

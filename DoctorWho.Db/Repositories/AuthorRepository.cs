@@ -6,7 +6,12 @@ namespace DoctorWho.Db
 {
     public class AuthorRepository
     {
-        private static DoctorWhoCoreDbContext _context = new DoctorWhoCoreDbContext();
+        private static DoctorWhoCoreDbContext _context;
+
+        public AuthorRepository(DoctorWhoCoreDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
         public void CreatAuthor(string name)
         {

@@ -4,7 +4,12 @@ namespace DoctorWho.Db
 {
     public class EnemyRepository
     {
-        private static DoctorWhoCoreDbContext _context = new DoctorWhoCoreDbContext();
+        private static DoctorWhoCoreDbContext _context;
+
+        public EnemyRepository(DoctorWhoCoreDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
         public void CreatEnemy(string name, string description)
         {

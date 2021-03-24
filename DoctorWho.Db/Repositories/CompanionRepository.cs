@@ -4,7 +4,12 @@ namespace DoctorWho.Db
 {
     public class CompanionRepository
     {
-        private static DoctorWhoCoreDbContext _context = new DoctorWhoCoreDbContext();
+        private static DoctorWhoCoreDbContext _context;
+
+        public CompanionRepository(DoctorWhoCoreDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
         public void CreatCompanion(string name, string whoPlayed)
         {

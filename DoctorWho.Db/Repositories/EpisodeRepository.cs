@@ -6,7 +6,12 @@ namespace DoctorWho.Db
 {
     public class EpisodeRepository
     {
-        private static DoctorWhoCoreDbContext _context = new DoctorWhoCoreDbContext();
+        private static DoctorWhoCoreDbContext _context;
+
+        public EpisodeRepository(DoctorWhoCoreDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
         public void CreatEpisode(Episode episode)
         {
