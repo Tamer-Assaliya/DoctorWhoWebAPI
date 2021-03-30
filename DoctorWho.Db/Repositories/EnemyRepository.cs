@@ -1,8 +1,9 @@
 using System;
+using DoctorWho.Db.Contracts;
 
 namespace DoctorWho.Db
 {
-    public class EnemyRepository
+    public class EnemyRepository : IEnemyRepository
     {
         private static DoctorWhoCoreDbContext _context;
 

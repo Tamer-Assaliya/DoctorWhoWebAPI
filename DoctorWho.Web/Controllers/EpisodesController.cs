@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using DoctorWho.Web.Models;
+using DoctorWho.Db.Contracts;
 
 namespace DoctorWho.Web.Controllers
 {
@@ -14,13 +15,13 @@ namespace DoctorWho.Web.Controllers
     [Route("api/episodes")]
     public class EpisodesController : ControllerBase
     {
-        private readonly EpisodeRepository _episodeRepository;
-        private readonly EpisodeEnemyRepository _episodeEnemyRepository;
-        private readonly EpisodeCompanionRepository _episodeCompanionRepository;
+        private readonly IEpisodeRepository _episodeRepository;
+        private readonly IEpisodeEnemyRepository _episodeEnemyRepository;
+        private readonly IEpisodeCompanionRepository _episodeCompanionRepository;
         private readonly IMapper _mapper;
-        public EpisodesController(EpisodeRepository episodeRepository,
-        EpisodeEnemyRepository episodeEnemyRepository,
-        EpisodeCompanionRepository episodeCompanionRepository,
+        public EpisodesController(IEpisodeRepository episodeRepository,
+        IEpisodeEnemyRepository episodeEnemyRepository,
+        IEpisodeCompanionRepository episodeCompanionRepository,
         IMapper mapper)
         {
             _episodeRepository = episodeRepository ??

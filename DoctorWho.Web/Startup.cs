@@ -16,6 +16,7 @@ using DoctorWho.Db;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using DoctorWho.Web.Validators;
+using DoctorWho.Db.Contracts;
 
 namespace DoctorWho.Web
 {
@@ -33,13 +34,13 @@ namespace DoctorWho.Web
         {
             services.AddControllers().AddFluentValidation();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<DoctorRepository>();
-            services.AddScoped<EpisodeRepository>();
-            services.AddScoped<EpisodeCompanionRepository>();
-            services.AddScoped<EpisodeEnemyRepository>();
-            services.AddScoped<AuthorRepository>();
-            services.AddScoped<EnemyRepository>();
-            services.AddScoped<CompanionRepository>();
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IEpisodeRepository, EpisodeRepository>();
+            services.AddScoped<IEpisodeCompanionRepository, EpisodeCompanionRepository>();
+            services.AddScoped<IEpisodeEnemyRepository, EpisodeEnemyRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IEnemyRepository, EnemyRepository>();
+            services.AddScoped<ICompanionRepository, CompanionRepository>();
             services.AddDbContext<DoctorWhoCoreDbContext>(
                 options =>
             {

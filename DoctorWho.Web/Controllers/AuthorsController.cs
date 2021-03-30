@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using DoctorWho.Web.Models;
+using DoctorWho.Db.Contracts;
 
 namespace DoctorWho.Web.Controllers
 {
@@ -14,9 +15,9 @@ namespace DoctorWho.Web.Controllers
     [Route("api/authors")]
     public class AuthorsController : ControllerBase
     {
-        private readonly AuthorRepository _authorRepository;
+        private readonly IAuthorRepository _authorRepository;
         private readonly IMapper _mapper;
-        public AuthorsController(AuthorRepository authorRepository, IMapper mapper)
+        public AuthorsController(IAuthorRepository authorRepository, IMapper mapper)
         {
             _authorRepository = authorRepository ??
               throw new ArgumentNullException(nameof(AuthorRepository));

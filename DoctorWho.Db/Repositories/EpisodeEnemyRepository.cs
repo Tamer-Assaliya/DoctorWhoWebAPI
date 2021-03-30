@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
+using DoctorWho.Db.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db
 {
-    public class EpisodeEnemyRepository
+    public class EpisodeEnemyRepository : IEpisodeEnemyRepository
     {
         private static DoctorWhoCoreDbContext _context;
 

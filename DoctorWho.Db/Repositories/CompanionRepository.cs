@@ -1,8 +1,9 @@
 using System;
+using DoctorWho.Db.Contracts;
 
 namespace DoctorWho.Db
 {
-    public class CompanionRepository
+    public class CompanionRepository : ICompanionRepository
     {
         private static DoctorWhoCoreDbContext _context;
 

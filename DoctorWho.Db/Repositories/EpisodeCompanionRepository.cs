@@ -4,10 +4,11 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using DoctorWho.Db.Contracts;
 
 namespace DoctorWho.Db
 {
-    public class EpisodeCompanionRepository
+    public class EpisodeCompanionRepository : IEpisodeCompanionRepository
     {
         private static DoctorWhoCoreDbContext _context;
 

@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DoctorWho.Db.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorWho.Db
 {
-    public class DoctorRepository
+    public class DoctorRepository : IDoctorRepository
     {
         private static DoctorWhoCoreDbContext _context;
 

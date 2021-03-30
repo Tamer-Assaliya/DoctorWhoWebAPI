@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using DoctorWho.Db.Contracts;
 
 namespace DoctorWho.Db
 {
-    public class AuthorRepository
+    public class AuthorRepository : IAuthorRepository
     {
         private static DoctorWhoCoreDbContext _context;
 
