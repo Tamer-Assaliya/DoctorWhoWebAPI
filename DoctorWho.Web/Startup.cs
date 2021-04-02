@@ -41,6 +41,7 @@ namespace DoctorWho.Web
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IEnemyRepository, EnemyRepository>();
             services.AddScoped<ICompanionRepository, CompanionRepository>();
+            services.AddScoped<ICompanionRepository, CompanionRepository>();
             services.AddDbContext<DoctorWhoCoreDbContext>(
                 options =>
             {
