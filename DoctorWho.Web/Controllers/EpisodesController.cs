@@ -35,6 +35,7 @@ namespace DoctorWho.Web.Controllers
               throw new ArgumentNullException(nameof(mapper));
         }
 
+        [TypeFilter(typeof(Filters.AuthorizationFilter))]
         [HttpGet(Name = "GetEpisodes")]
         [HttpHead]
         public ActionResult<IEnumerable<EpisodeDto>> GetAllEpisodes()

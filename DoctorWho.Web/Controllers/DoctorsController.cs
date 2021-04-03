@@ -25,6 +25,8 @@ namespace DoctorWho.Web.Controllers
               throw new ArgumentNullException(nameof(mapper));
         }
 
+        [TypeFilter(typeof(Filters.AuthorizationFilter))]
+        [TypeFilter(typeof(Filters.DoctorNameRadictionActionFilter))]
         [HttpGet(Name = "GetDoctors")]
         [HttpHead]
         public ActionResult<IEnumerable<DoctorDto>> GetAllDoctors()

@@ -24,7 +24,7 @@ namespace DoctorWho.Web.Controllers
             _mapper = mapper ??
               throw new ArgumentNullException(nameof(mapper));
         }
-
+        [TypeFilter(typeof(Filters.AuthorizationFilter))]
         [HttpGet(Name = "GetAuthors")]
         [HttpHead]
         public ActionResult<IEnumerable<AuthorDto>> GetAllAuthors()

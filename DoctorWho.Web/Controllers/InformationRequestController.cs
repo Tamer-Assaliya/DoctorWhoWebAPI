@@ -15,15 +15,9 @@ namespace DoctorWho.Web.Controllers
     [Route("api/informationRequest")]
     public class InformationRequestController : ControllerBase
     {
-        // private readonly IAuthorRepository _authorRepository;
+        // private readonly InformationRequestRepository;
         private readonly IMapper _mapper;
-        public InformationRequestController(IAuthorRepository authorRepository, IMapper mapper)
-        {
-            // _authorRepository = authorRepository ??
-            //   throw new ArgumentNullException(nameof(AuthorRepository));
-            // _mapper = mapper ??
-            //   throw new ArgumentNullException(nameof(mapper));
-        }
+
 
         [HttpGet(Name = "GetCurrentInformationRequests")]
         [HttpHead]
@@ -32,13 +26,15 @@ namespace DoctorWho.Web.Controllers
          [FromHeader] Enumerations.NetworkType network,
          [FromHeader] int userId)
         {
-            // switch()
-            return Ok(new
+            //Assume from the database
+            var informationRequestDto = new InformationRequestDto()
             {
-                auth = auth,
-                network = network,
-                userId = userId
-            });
+                AccessLevel = Enumerations.AccessLevel.Unknown,
+                StartTime = new DateTime(2000, 1, 1),
+                EndTime = new DateTime(3000, 12, 1), //or new DateTime(2000, 12, 1) for a different result
+            };
+            // switch()
+            return Ok(new[] { informationRequestDto, informationRequestDto, informationRequestDto }); //returns IEnumerable 
         }
 
         [HttpPost()]
@@ -47,7 +43,14 @@ namespace DoctorWho.Web.Controllers
          [FromHeader] Enumerations.NetworkType network,
          [FromHeader] int userId)
         {
-            return Ok();
+            //Assume from the database
+            var informationRequestDto = new InformationRequestDto()
+            {
+                AccessLevel = Enumerations.AccessLevel.Unknown,
+                StartTime = new DateTime(2000, 1, 1),
+                EndTime = new DateTime(3000, 12, 1), //or new DateTime(2000, 12, 1) for a different result
+            };
+            return Ok(informationRequestDto);
         }
 
         [HttpPost("approve")]

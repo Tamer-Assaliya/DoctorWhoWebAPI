@@ -8,6 +8,6 @@ namespace DoctorWho.Web.Enumerations
         Redacted,
         Partial,
         RequestChange,
-        Modify
+        Modify,
     }
 }

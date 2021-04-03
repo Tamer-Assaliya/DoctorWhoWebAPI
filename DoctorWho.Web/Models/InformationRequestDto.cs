@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DoctorWho.Web.Models
 {
-    public class InformationRequestDtoForCreation
+    public class InformationRequestDto
     {
         public Enumerations.AccessLevel AccessLevel { get; set; }
         public DateTime? StartTime { get; set; }
